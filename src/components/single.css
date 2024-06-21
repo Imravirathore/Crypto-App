@@ -36,6 +36,7 @@
     font-size: 12px;
     letter-spacing: 1.2px;
     color: rgb(197, 197, 197);
+    position: relative;
   }
   
   .temp {

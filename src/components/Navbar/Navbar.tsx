@@ -20,8 +20,8 @@ import {
 } from '@chakra-ui/react'
 
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import {  FaApple, FaAngleUp, FaAngleDown } from 'react-icons/fa';
-import hh from '../../assets/logo.png'
+import { FaApple, FaAngleUp, FaAngleDown } from 'react-icons/fa';
+import logo from '../../assets/logo1.png'
 import './navbar.css'
 
 interface Props {
@@ -29,8 +29,8 @@ interface Props {
 }
 
 // coinrankingae19b29f9cddde3b99f322a8ea51b601f1fbea06d58a796c
-const Links = ['Top-100', 'Top-Gainers', 'Top-Losers']
-const linkIcons = [ '', <FaAngleUp />, <FaAngleDown />]
+const Links = ['Top-50', 'Top-Gainers', 'Top-Losers']
+const linkIcons = ['', <FaAngleUp />, <FaAngleDown />]
 
 const NavLink = (props: Props) => {
     const { children } = props
@@ -69,11 +69,16 @@ export default function Navbar() {
                         <Box>
                             <Image
                                 objectFit='cover'
-                                src={hh}
+                                src={logo}
                                 alt='Dan Abramov'
-                                width='200px'
-                                height='50px'
+                                width='50px'
+                                height='60px'
                             />
+                            <Text
+                             className='logo-txt'
+                            >
+                            Crypto Hub
+                            </Text>
                         </Box>
                         <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
                             {Links.map((link, index) => (

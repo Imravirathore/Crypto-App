@@ -1,25 +1,8 @@
 // useFetchTodos.ts
 import { useQuery } from '@tanstack/react-query';
 
-// Define the type of each item in the data array
-type CryptoApiData2 = {
-    status: string;
-    changePercent24Hr: string;
-    explorer: string;
-    id: string;
-    marketCapUsd: string;
-    maxSupply: string;
-    name: string;
-    priceUsd: number;
-    rank: string;
-    supply: string;
-    symbol: string;
-    volumeUsd24Hr: string;
-    vwap24Hr: string;
-    index:number
-  };
-
-const fetchTodos = async (): Promise<CryptoApiData2[]> => {
+  
+const fetchTodos = async ()=> {
 
     const options = {
         headers: {
@@ -32,14 +15,9 @@ const fetchTodos = async (): Promise<CryptoApiData2[]> => {
     if (!response.ok) {
         throw new Error('Network response was not ok');
     }
-    // const data = await response.json();
-    const { data } = await response.json(); // Assuming the API response has a 'data' field containing the array
-
-    return data.stats;
-    // return data.data;
-    // console.log('data new', data)
-
-    // return data.data.slice(0, 99);
+    const result = await response.json(); 
+    // console.log('data frm api :', data.data)
+    return result.data;
 }
 
 const useCryptoApi = () => {
