@@ -50,12 +50,11 @@ const Crypto: React.FC = () => {
             {/* <Button colorScheme='blue' onClick={handleCameraIncre}>Increment</Button>
             <h2 style={{ color: '#fff' }}>{countCamera}</h2>
             <Button colorScheme='blue' onClick={handleCameraDecre}>Decrement</Button> */}
-            <h1>Hiii</h1>
             {/* <Single/> */}
 
             {
                 <Box p='4'>
-                    <SimpleGrid columns={[2, null, 3]} spacing='20px'>
+                    <SimpleGrid columns={[1, null, 3]} spacing='20px'>
                         {
                             data.coins.map((item: CryptoApiData, index: number) => {
                                 return (

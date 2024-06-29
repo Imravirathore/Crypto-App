@@ -6,7 +6,7 @@ import { SiCoinmarketcap } from "react-icons/si";
 import { FaExchangeAlt } from "react-icons/fa";
 import { MdDone } from "react-icons/md";
 import { FaCheck } from "react-icons/fa";
-
+import moment from 'moment';
 
 
 type Stats = {
@@ -18,7 +18,14 @@ type Stats = {
     total24hVolume: string
 };
 
+// Get Current Date
+
+
 const NewsTicker = () => {
+
+    // Get Current Date
+    const formattedDate = moment().format('MMMM D, YYYY');
+
 
     const { data, isLoading, error } = useCryptoApi();
     // console.log('APIs DATA :', data.stats.total)
@@ -34,7 +41,7 @@ const NewsTicker = () => {
         <>
             <div className="news-container">
                 <div className="title">
-                    Latest News :
+                    Market Update : {formattedDate}
                 </div>
 
                 <ul>

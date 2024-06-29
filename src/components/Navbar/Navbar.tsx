@@ -67,17 +67,17 @@ export default function Navbar() {
                     />
                     <HStack spacing={8} alignItems={'center'}>
                         <Box>
-                            <Image
+                            {/* <Image
                                 objectFit='cover'
                                 src={logo}
                                 alt='Dan Abramov'
                                 width='50px'
                                 height='60px'
-                            />
+                            /> */}
                             <Text
                              className='logo-txt'
                             >
-                            Crypto Hub
+                            Crypto <span style={{color:'#fff'}}>Hub</span> 
                             </Text>
                         </Box>
                         <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
