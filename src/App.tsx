@@ -7,7 +7,7 @@ import Single from './components/Single';
 const App:React.FC = ()=>{
   return (
     <>
-    <NewsTicker/>
+      <NewsTicker/>
       <Navbar/>
       {/* <MyProfileCard/> */}
       {/* <Single/> */}
