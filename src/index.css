@@ -7,10 +7,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: #1a202c !important; */
+  background-color: #1a202c !important;
   /* background: radial-gradient(circle at 1.8% 4.8%, rgb(17, 23, 58) 0%, rgb(58, 85, 148) 90%) !important; */
-  /* background-color: #2234ae; */
-  background-image: linear-gradient(315deg, #2234ae 0%, #191714 74%) !important;
+  /* background-color: #2234ae !important; */
+  /* background-image: linear-gradient(315deg, #2234ae 0%, #191714 74%) !important; */
+  /* background-repeat: no-repeat !important;
+  background-size: cover Im !important; */
   font-family: "Nunito Sans", sans-serif;
   --sb-track-color: #232E33;
   --sb-thumb-color: #274c96;

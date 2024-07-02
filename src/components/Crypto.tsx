@@ -9,7 +9,9 @@ import { FaHeart } from "react-icons/fa";
 import { useToast } from '@chakra-ui/react'
 import './single.css'
 import { FaCaretUp } from "react-icons/fa6";
-
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import Preloader from './Preloader/Preloader';
 
 type CryptoApiData = {
     btcPrice: string;
@@ -39,7 +41,7 @@ const Crypto: React.FC = () => {
 
     const { data, isLoading, error } = useCryptoApi();
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div><Preloader/></div>;
     }
     if (error) {
         return <div>Error: {error.message}</div>;
