@@ -13,10 +13,11 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react'
 import './index.css'
+
 export default function MyProfileCard() {
     return (
         <>
-            <Box className='profile-container'>
+            <Box className='profile-container'>z
                 <Center className='profile-card'>
                     <Box maxW={'320px'}
                         w={'full'}
@@ -60,7 +61,7 @@ export default function MyProfileCard() {
                         >
                             Passionate frontend developer,SEO analyst. Helping businesses to boost their online visibility
                         </Text>
-                        
+
                         <Stack mt={8} direction={'row'} spacing={4}>
                             <Button
                                 flex={1}
@@ -70,6 +71,7 @@ export default function MyProfileCard() {
                                     bg: 'gray.200',
                                 }}>
                                 Go Back
+                              
                             </Button>
                             <Button
                                 flex={1}
