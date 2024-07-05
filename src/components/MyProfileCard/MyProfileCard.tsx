@@ -8,11 +8,11 @@ import {
     Text,
     Stack,
     Button,
-    Link,
     Badge,
     useColorModeValue,
 } from '@chakra-ui/react'
 import './index.css'
+import { Link } from "react-router-dom";
 
 export default function MyProfileCard() {
     return (
@@ -63,33 +63,41 @@ export default function MyProfileCard() {
                         </Text>
 
                         <Stack mt={8} direction={'row'} spacing={4}>
-                            <Button
-                                flex={1}
-                                fontSize={'sm'}
-                                rounded={'full'}
-                                _focus={{
-                                    bg: 'gray.200',
-                                }}>
-                                Go Back
-                              
-                            </Button>
-                            <Button
-                                flex={1}
-                                fontSize={'sm'}
-                                rounded={'full'}
-                                bg={'blue.400'}
-                                color={'white'}
-                                boxShadow={
-                                    '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
-                                }
-                                _hover={{
-                                    bg: 'blue.500',
-                                }}
-                                _focus={{
-                                    bg: 'blue.500',
-                                }}>
-                                Wishlist
-                            </Button>
+
+                            <Link to='/' >
+                                <Button
+                                    flex={1}
+                                    fontSize={'sm'}
+                                    rounded={'full'}
+                                    _focus={{
+                                        bg: 'gray.200',
+                                    }}>
+                                    Go Back
+
+                                </Button>
+                            </Link>
+
+                            <Link to='/wishlist' >
+
+                                <Button
+                                    flex={1}
+                                    fontSize={'sm'}
+                                    rounded={'full'}
+                                    bg={'blue.400'}
+                                    color={'white'}
+                                    boxShadow={
+                                        '0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)'
+                                    }
+                                    _hover={{
+                                        bg: 'blue.500',
+                                    }}
+                                    _focus={{
+                                        bg: 'blue.500',
+                                    }}>
+                                    Wishlist
+                                </Button>
+                            </Link>
+
                         </Stack>
                     </Box>
 

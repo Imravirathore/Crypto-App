@@ -1,4 +1,4 @@
-'use client'
+
 
 import {
     Box,
@@ -23,6 +23,7 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { FaApple, FaAngleUp, FaAngleDown } from 'react-icons/fa';
 import logo from '../../assets/logo1.png'
 import './navbar.css'
+import { Link } from "react-router-dom";
 
 interface Props {
     children: React.ReactNode
@@ -75,9 +76,9 @@ export default function Navbar() {
                                 height='60px'
                             /> */}
                             <Text
-                             className='logo-txt'
+                                className='logo-txt'
                             >
-                            Crypto <span style={{color:'#fff'}}>Hub</span> 
+                                Crypto <span style={{ color: '#fff' }}>Hub</span>
                             </Text>
                         </Box>
                         <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
@@ -104,8 +105,17 @@ export default function Navbar() {
                                 />
                             </MenuButton>
                             <MenuList>
-                                <MenuItem>My Account</MenuItem>
+                                <Link to='/profile' >
+                                    <MenuItem>
+                                        My Profile
+
+                                    </MenuItem>
+                                </Link>
+                            <Link to='/wishlist' >
+
                                 <MenuItem>Wishlist</MenuItem>
+                                </Link>
+
                                 {/* <MenuDivider /> */}
                                 {/* <MenuItem>Link 3</MenuItem> */}
                             </MenuList>
