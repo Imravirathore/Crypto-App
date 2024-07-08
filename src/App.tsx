@@ -1,5 +1,5 @@
 import { useEffect, useState, Suspense, lazy } from 'react';
-// import Crypto from './components/Crypto';
+import Crypto from './components/Crypto';
 import MyProfileCard from './components/MyProfileCard/MyProfileCard';
 import Navbar from './components/Navbar/Navbar';
 import NewsTicker from './components/NewsTicker/NewsTicker';
@@ -9,29 +9,21 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import MyWishList from './components/MyWishList/MyWishList';
 // import FooterA from './components/Footer/FooterA';
 import Footer from './components/Footer/Footer';
-
-const Crypto = lazy(()=> import ('./components/Crypto'))
+import UserInfoModal from './components/UserInfoModal/UserInfoModal';
 const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
-  // useEffect(() => {
-  //   // Simulating content loading
-  //   setTimeout(() => {
-  //     setIsLoading(false);
-  //   }, 1000);
-  // }, []);
 
   return (
     <>
+   <UserInfoModal />
       <NewsTicker />
       <Navbar />
-      <Suspense fallback={<div>Loadaing..........</div>}>
-      <Crypto/>
-      </Suspense>
-      {/* <Routes>
+      <Crypto />
+      <Routes>
         <Route path='/' element={<Crypto />} />
         <Route path='/wishlist' element={<MyWishList />} />
         <Route path='/profile' element={<MyProfileCard />} />
-      </Routes> */}
+      </Routes>
       <Footer />
     </>
   )
