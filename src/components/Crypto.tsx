@@ -13,6 +13,9 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import Preloader from './Preloader/Preloader';
 import Preloader2 from './Preloader/Preloader2';
+import UserInfoModal from './UserInfoModal/UserInfoModal';
+import Footer from './Footer/Footer';
+
 
 type CryptoApiData = {
     btcPrice: string;
@@ -29,20 +32,15 @@ type CryptoApiData = {
     rank: number
 };
 const Crypto: React.FC = () => {
-    const countCamera = useSelector((state: RootState) => state.counter1.totalCamera);
+    const countCamera = useSelector((state: RootState) => state);
+    const isDataAvialable = countCamera.counter1.userInfoData && countCamera.counter1.userInfoData.name
+    console.log('isDataAvialable', isDataAvialable)
+
     const dispatch = useDispatch();
-
-    const handleCameraIncre = () => {
-        dispatch(IncrementCamera());
-    };
-
-    const handleCameraDecre = () => {
-        dispatch(DecrementCamera());
-    };
 
     const { data, isLoading, error } = useCryptoApi();
     if (isLoading) {
-        return <div><Preloader2/></div>;
+        return <div><Preloader2 /></div>;
     }
     if (error) {
         return <div>Error: {error.message}</div>;
@@ -50,24 +48,26 @@ const Crypto: React.FC = () => {
 
     return (
         <>
-            {/* <Button colorScheme='blue' onClick={handleCameraIncre}>Increment</Button>
-            <h2 style={{ color: '#fff' }}>{countCamera}</h2>
-            <Button colorScheme='blue' onClick={handleCameraDecre}>Decrement</Button> */}
-            {/* <Single/> */}
+      {
+  (isDataAvialable === null || isDataAvialable === '') ? (
+    <UserInfoModal />
+  ) : (
+    null
+  )
+}
 
-            {
-                <Box p='4'>
-                    <SimpleGrid columns={[1, null, 3]} spacing='20px'>
-                        {
-                            data.coins.map((item: CryptoApiData, index: number) => {
-                                return (
-                                    <>
+            <Box p='4'>
+                <SimpleGrid columns={[1, null, 3]} spacing='20px'>
+                    {
+                        data.coins.map((item: CryptoApiData, index: number) => {
+                            return (
+                                <>
 
-                                        <Box height=''>
-                                            <div className="cardContainer">
-                                                <div className="card">
-                                                    <p className="city">{item.name}</p>
-                                                    {/* <FaHeart style={{
+                                    <Box height=''>
+                                        <div className="cardContainer">
+                                            <div className="card">
+                                                <p className="city">{item.name}</p>
+                                                {/* <FaHeart style={{
                                                      color: wishList ? 'red' : '#fff',
                                                      position: 'absolute',
                                                      top: '10',
@@ -77,49 +77,51 @@ const Crypto: React.FC = () => {
                                                  }}
                                                      onClick={() => addWishList(item, index)}
                                                  /> */}
-                                                    {/* <p className="weather">Change : -2% (Last 24 Hrs)</p> */}
-                                                    <Image src={item.iconUrl} alt='Crypto Logo Images' borderRadius='full' width={50} />
-                                                    <p className="temp">$ {Number(item.price).toFixed(2)}</p>
-                                                    <span className="weather">Change : {item.change}
-                                                        {
-                                                            Number(item.change) < 0
-                                                                ?
-                                                                (
-                                                                    <FaCaretUp style={{ color: 'red', display: 'inline', fontSize: '22px', position: 'absolute' }}
-                                                                    />
+                                                {/* <p className="weather">Change : -2% (Last 24 Hrs)</p> */}
+                                                <Image src={item.iconUrl} alt='Crypto Logo Images' borderRadius='full' width={50} />
+                                                <p className="temp">$ {Number(item.price).toFixed(2)}</p>
+                                                <span className="weather">Change : {item.change}
+                                                    {
+                                                        Number(item.change) < 0
+                                                            ?
+                                                            (
+                                                                <FaCaretUp style={{ color: 'red', display: 'inline', fontSize: '22px', position: 'absolute' }}
+                                                                />
 
-                                                                )
-                                                                :
-                                                                (
-                                                                    <FaCaretUp style={{ color: '#36ff36', display: 'inline', fontSize: '22px', position: 'absolute' }}
-                                                                    />
+                                                            )
+                                                            :
+                                                            (
+                                                                <FaCaretUp style={{ color: '#36ff36', display: 'inline', fontSize: '22px', position: 'absolute' }}
+                                                                />
 
-                                                                )
-                                                        }
-                                                    </span>
+                                                            )
+                                                    }
+                                                </span>
 
 
-                                                    <div className="minmaxContainer">
-                                                        <div className="min">
-                                                            <p className="minHeading">Market Rank</p>
-                                                            <p className="minTemp">{item.rank}</p>
-                                                        </div>
-                                                        <div className="max">
-                                                            <p className="maxHeading">Market Cap</p>
-                                                            <p className="maxTemp">{'$ ' +item.marketCap}</p>
+                                                <div className="minmaxContainer">
+                                                    <div className="min">
+                                                        <p className="minHeading">Market Rank</p>
+                                                        <p className="minTemp">{item.rank}</p>
+                                                    </div>
+                                                    <div className="max">
+                                                        <p className="maxHeading">Market Cap</p>
+                                                        <p className="maxTemp">{'$ ' + item.marketCap}</p>
 
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </Box>
-                                    </>
-                                )
-                            })
-                        }
-                    </SimpleGrid>
-                </Box>
-            }
+                                        </div>
+                                    </Box>
+                                </>
+                            )
+                        })
+                    }
+                </SimpleGrid>
+            </Box>
+            <Footer />
+
+
         </>
     )
 }

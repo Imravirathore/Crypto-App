@@ -7,24 +7,24 @@ import Preloader from './components/Preloader/Preloader';
 import Single from './components/Single';
 import { Routes, Route, useLocation } from "react-router-dom";
 import MyWishList from './components/MyWishList/MyWishList';
-// import FooterA from './components/Footer/FooterA';
-import Footer from './components/Footer/Footer';
-import UserInfoModal from './components/UserInfoModal/UserInfoModal';
+
 const App: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(false);
+
+  const routePath = useLocation();
+  console.log('route path ::', routePath)
 
   return (
     <>
-   <UserInfoModal />
-      <NewsTicker />
+{/* If Route is /profile, then NewsTicker will be hide */}
+    {
+      routePath.pathname !== '/profile'  && routePath.pathname !== '/wishlist'  &&  <NewsTicker />
+    }
       <Navbar />
-      <Crypto />
       <Routes>
         <Route path='/' element={<Crypto />} />
         <Route path='/wishlist' element={<MyWishList />} />
         <Route path='/profile' element={<MyProfileCard />} />
       </Routes>
-      <Footer />
     </>
   )
 }

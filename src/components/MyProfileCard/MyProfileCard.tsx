@@ -1,5 +1,3 @@
-'use client'
-
 import {
     Heading,
     Avatar,
@@ -13,8 +11,23 @@ import {
 } from '@chakra-ui/react'
 import './index.css'
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from '../../app/store'
+
+import girlImage from '../../assets/crypto-logos/girl-profile.jpg'
+import boyImage from '../../assets/crypto-logos/boy-profile.jpg'
+import { useEffect } from 'react';
+
 
 export default function MyProfileCard() {
+      // Redux
+  const countCamera = useSelector((state: RootState) => state);
+  useEffect(() => {
+    // Scroll to a specific position (e.g., 0, 500) when the component mounts
+    window.scrollTo(0, 500);
+  }, []);
+
+
     return (
         <>
             <Box className='profile-container'>z
@@ -30,7 +43,9 @@ export default function MyProfileCard() {
                         <Avatar
                             size={'xl'}
                             src={
-                                'https://images.unsplash.com/photo-1520810627419-35e362c5dc07?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ'
+                                countCamera.counter1.userInfoData && countCamera.counter1.userInfoData.gender === 'Male'
+                                 ? boyImage
+                                 : girlImage
                             }
                             mb={4}
                             pos={'relative'}
@@ -50,8 +65,13 @@ export default function MyProfileCard() {
                         <Heading
                             color='#fff'
                             textAlign={'center'}
-                            fontSize={'2xl'} fontFamily={'body'} >
-                            Ravi Rathore
+                            fontSize={'2xl'} fontFamily={'body'} 
+                            textTransform={'capitalize'}
+                            
+                            >
+                            {
+                                countCamera.counter1.userInfoData && countCamera.counter1.userInfoData.name
+                            }
                         </Heading>
                         <Text
                             textAlign={'center'}
@@ -59,7 +79,10 @@ export default function MyProfileCard() {
                             px={0}
                             m={2}
                         >
-                            Passionate frontend developer,SEO analyst. Helping businesses to boost their online visibility
+                            {
+                                countCamera.counter1.userInfoData && countCamera.counter1.userInfoData.about
+                            }
+                            
                         </Text>
 
                         <Stack mt={8} direction={'row'} spacing={4}>

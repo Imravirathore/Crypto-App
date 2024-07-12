@@ -75,11 +75,14 @@ export default function Navbar() {
                                 width='50px'
                                 height='60px'
                             /> */}
-                            <Text
-                                className='logo-txt'
-                            >
-                                Crypto <span style={{ color: '#fff' }}>Hub</span>
-                            </Text>
+
+                            <Link to='/' >
+                                <Text
+                                    className='logo-txt'
+                                >
+                                    Crypto <span style={{ color: '#fff' }}>Hub</span>
+                                </Text>
+                            </Link>
                         </Box>
                         <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
                             {Links.map((link, index) => (
@@ -111,9 +114,9 @@ export default function Navbar() {
 
                                     </MenuItem>
                                 </Link>
-                            <Link to='/wishlist' >
+                                <Link to='/wishlist' >
 
-                                <MenuItem>Wishlist</MenuItem>
+                                    <MenuItem>Wishlist</MenuItem>
                                 </Link>
 
                                 {/* <MenuDivider /> */}

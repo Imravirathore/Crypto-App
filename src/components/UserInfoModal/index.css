@@ -1,0 +1,22 @@
+.css-pv22qu
+{
+    color: #fff !important;
+    background: #2d3748 !important;
+}
+
+/* form input {
+} */
+
+.formContainer input, .formContainer select, .formContainer textarea
+{
+    /* background-color: green !important; */
+    outline: 10px solid transparent !important;
+    border: 1px solid #918c8c7e;
+
+}
+
+.css-ez23ye
+{
+    background-color:rgba(255, 255, 255, 0.08) !important;
+    color: #fff !important;
+}
