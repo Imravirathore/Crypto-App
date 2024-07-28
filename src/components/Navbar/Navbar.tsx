@@ -30,12 +30,11 @@ interface Props {
 }
 
 // coinrankingae19b29f9cddde3b99f322a8ea51b601f1fbea06d58a796c
-const Links = ['Top-50', 'Top-Gainers', 'Top-Losers']
+const Links = ['Top-50', 'Top-Gainers', 'Top-Losers', 'Top News']
 const linkIcons = ['', <FaAngleUp />, <FaAngleDown />]
 
 const NavLink = (props: Props) => {
     const { children } = props
-
     return (
         <Box
             as="a"

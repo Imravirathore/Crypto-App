@@ -63,9 +63,9 @@ function UserInfoModal() {
     const initialRef = useRef(null)
     const finalRef = useRef(null)
 
-    useEffect(() => {
-        onOpen()
-    }, [onOpen])
+    // useEffect(() => {
+    //     onOpen()
+    // }, [onOpen])
 
     return (
         <>

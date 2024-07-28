@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SimpleGrid, Box, Image, Button, ButtonGroup } from '@chakra-ui/react'
 import './single.css'
 import hh from '../assets/crypto-logos/solana.png'
-import imageArr from './Images';
+// import imageArr from './Images';
 import useFetchTodos from './fetchData/useFetchTodos';
 import { FaHeart } from "react-icons/fa";
 import { useToast } from '@chakra-ui/react'
@@ -91,7 +91,7 @@ const Single: React.FC = () => {
                                                     onClick={() => addWishList(item, index)}
                                                 />
                                                 {/* <p className="weather">Change : -2% (Last 24 Hrs)</p> */}
-                                                <Image src={imageArr[index].path} alt='Crypto Logo Images' borderRadius='full' width={50} />
+                                                {/* <Image src={imageArr[index].path} alt='Crypto Logo Images' borderRadius='full' width={50} /> */}
                                                 <p className="temp">$ {Number(item.priceUsd).toFixed(2)}</p>
                                                 <div className="minmaxContainer">
                                                     <div className="min">

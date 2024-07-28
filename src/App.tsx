@@ -7,11 +7,11 @@ import Preloader from './components/Preloader/Preloader';
 import Single from './components/Single';
 import { Routes, Route, useLocation } from "react-router-dom";
 import MyWishList from './components/MyWishList/MyWishList';
+import CryptoInfo from './components/CryptoInfo/CryptoInfo';
 
 const App: React.FC = () => {
 
   const routePath = useLocation();
-  console.log('route path ::', routePath)
 
   return (
     <>
@@ -24,6 +24,7 @@ const App: React.FC = () => {
         <Route path='/' element={<Crypto />} />
         <Route path='/wishlist' element={<MyWishList />} />
         <Route path='/profile' element={<MyProfileCard />} />
+        <Route path='/crypto/:id' element={<CryptoInfo />} />       
       </Routes>
     </>
   )

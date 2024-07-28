@@ -12,9 +12,9 @@ import moment from 'moment';
 type Stats = {
     totalCoins: string;
     rank: number;
-    totalExchanges:number;
-    totalMarketCap:string;
-    totalMarkets : number;
+    totalExchanges: number;
+    totalMarketCap: string;
+    totalMarkets: number;
     total24hVolume: string
 };
 
@@ -45,11 +45,11 @@ const NewsTicker = () => {
                 </div>
 
                 <ul>
-                    <li> <FaCoins /> Total Coins : {data.stats.totalCoins}</li>
-                    <li><FaExchangeAlt /> Total Exchanges : {data.stats.totalExchanges}</li>
-                    <li><FaCheck /> Available Platforms : {data.stats.totalMarkets}</li>
-                    <li><SiCoinmarketcap />  Total Market Cap : {data.stats.totalMarketCap}</li>
-                 
+                    <li> <FaCoins /> Total Coins : {data.stats && data.stats.totalCoins}</li>
+                    <li><FaExchangeAlt /> Total Exchanges : {data.stats && data.stats.totalExchanges}</li>
+                    <li><FaCheck /> Available Platforms : {data.stats && data.stats.totalMarkets}</li>
+                    <li><SiCoinmarketcap />  Total Market Cap : {data.stats && data.stats.totalMarketCap}</li>
+
                 </ul>
             </div>
         </>

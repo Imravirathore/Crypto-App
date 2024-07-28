@@ -11,8 +11,11 @@ import { PersistGate } from "redux-persist/integration/react";
 import theme from './theme'
 import { ColorModeScript } from '@chakra-ui/react'
 import { ChakraProvider } from '@chakra-ui/react'
+import CryptoInfo from './components/CryptoInfo/CryptoInfo';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 const queryClient = new QueryClient();
+
+localStorage.setItem('chakra-ui-color-mode', 'dark')
 
 root.render(
   <Provider store={store}>
@@ -23,6 +26,7 @@ root.render(
             <BrowserRouter>
             <ColorModeScript initialColorMode={theme.config.initialColorMode} />
               <App />
+              {/* <CryptoInfo/> */}
             </BrowserRouter>
           </React.StrictMode>
         </ChakraProvider>

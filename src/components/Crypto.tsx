@@ -15,6 +15,9 @@ import Preloader from './Preloader/Preloader';
 import Preloader2 from './Preloader/Preloader2';
 import UserInfoModal from './UserInfoModal/UserInfoModal';
 import Footer from './Footer/Footer';
+import { Link, useNavigate } from "react-router-dom";
+import { ExternalLinkIcon, EmailIcon } from '@chakra-ui/icons'
+import AnimatedPage from './AnimatedPage/AnimatedPage';
 
 
 type CryptoApiData = {
@@ -34,9 +37,9 @@ type CryptoApiData = {
 const Crypto: React.FC = () => {
     const countCamera = useSelector((state: RootState) => state);
     const isDataAvialable = countCamera.counter1.userInfoData && countCamera.counter1.userInfoData.name
-    console.log('isDataAvialable', isDataAvialable)
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const { data, isLoading, error } = useCryptoApi();
     if (isLoading) {
@@ -46,28 +49,60 @@ const Crypto: React.FC = () => {
         return <div>Error: {error.message}</div>;
     }
 
+
+
+    const handleClick = (cryptoInfo: CryptoApiData) => {
+        navigate(`/crypto/${cryptoInfo.symbol}`, { state: { cryptoInfo } });
+        console.log('received daata ::', cryptoInfo)
+    }
+
+
+    // Add to Wishlist
+
+    // const addToWishList = (item:CryptoApiData)=>{
+    //     console.log('item is :', item)
+    // }
+
     return (
         <>
-      {
-  (isDataAvialable === null || isDataAvialable === '') ? (
-    <UserInfoModal />
-  ) : (
-    null
-  )
-}
 
-            <Box p='4'>
-                <SimpleGrid columns={[1, null, 3]} spacing='20px'>
-                    {
-                        data.coins.map((item: CryptoApiData, index: number) => {
-                            return (
-                                <>
+            <AnimatedPage>
 
-                                    <Box height=''>
-                                        <div className="cardContainer">
-                                            <div className="card">
-                                                <p className="city">{item.name}</p>
-                                                {/* <FaHeart style={{
+
+                {
+                    (isDataAvialable === null || isDataAvialable === '') ? (
+                        <UserInfoModal />
+                    ) : (
+                        null
+                    )
+                }
+
+                <Box p='4'>
+                    <SimpleGrid columns={[1, null, 3]} spacing='20px'>
+                        {
+                            data.coins.map((item: CryptoApiData, index: number) => {
+                                return (
+                                    <>
+
+                                        <Box cursor="pointer" height=''>
+                                            <div className="cardContainer">
+                                                <div className="card">
+                                                    <p className="city">{item.name}</p>
+                                                    {/* <Link to='https://chakra-ui.com' >
+                                                    Chakra Design system <ExternalLinkIcon mx='2px' />
+                                                </Link> */}
+                                                    {/* <Link to='/crypto' +index >
+
+                                                    Test
+                                                </Link> */}
+
+                                                    {/* <Link to={`/cryptoInfo/${item.symbol}`}>
+                                                    Test
+                                                </Link> */}
+
+                                                    <Button onClick={() => handleClick(item)} colorScheme='blue'>Button</Button>
+
+                                                    {/* <FaHeart style={{
                                                      color: wishList ? 'red' : '#fff',
                                                      position: 'absolute',
                                                      top: '10',
@@ -77,50 +112,61 @@ const Crypto: React.FC = () => {
                                                  }}
                                                      onClick={() => addWishList(item, index)}
                                                  /> */}
-                                                {/* <p className="weather">Change : -2% (Last 24 Hrs)</p> */}
-                                                <Image src={item.iconUrl} alt='Crypto Logo Images' borderRadius='full' width={50} />
-                                                <p className="temp">$ {Number(item.price).toFixed(2)}</p>
-                                                <span className="weather">Change : {item.change}
-                                                    {
-                                                        Number(item.change) < 0
-                                                            ?
-                                                            (
-                                                                <FaCaretUp style={{ color: 'red', display: 'inline', fontSize: '22px', position: 'absolute' }}
-                                                                />
+                                                    {/* <p className="weather">Change : -2% (Last 24 Hrs)</p> */}
 
-                                                            )
-                                                            :
-                                                            (
-                                                                <FaCaretUp style={{ color: '#36ff36', display: 'inline', fontSize: '22px', position: 'absolute' }}
-                                                                />
+                                                    <Image src={item.iconUrl} alt='Crypto Logo Images' borderRadius='full' width={50} />
+                                                    <p className="temp">$ {Number(item.price).toFixed(2)}</p>
+                                                    <span className="weather">Change : {item.change}
+                                                        {
+                                                            Number(item.change) < 0
+                                                                ?
+                                                                (
+                                                                    <FaCaretUp style={{ color: 'red', display: 'inline', fontSize: '22px', position: 'absolute' }}
+                                                                    />
 
-                                                            )
-                                                    }
-                                                </span>
+                                                                )
+                                                                :
+                                                                (
+                                                                    <FaCaretUp style={{ color: '#36ff36', display: 'inline', fontSize: '22px', position: 'absolute' }}
+                                                                    />
+
+                                                                )
+                                                        }
+                                                    </span>
 
 
-                                                <div className="minmaxContainer">
-                                                    <div className="min">
-                                                        <p className="minHeading">Market Rank</p>
-                                                        <p className="minTemp">{item.rank}</p>
+                                                    <div className="minmaxContainer">
+                                                        <div className="min">
+                                                            <p className="minHeading">Market Rank</p>
+                                                            <p className="minTemp">{item.rank}</p>
+                                                        </div>
+                                                        <div className="max">
+                                                            <p className="maxHeading">Market Cap</p>
+                                                            <p className="maxTemp">{'$ ' + item.marketCap}</p>
+
+                                                        </div>
+
+
+
                                                     </div>
-                                                    <div className="max">
-                                                        <p className="maxHeading">Market Cap</p>
-                                                        <p className="maxTemp">{'$ ' + item.marketCap}</p>
 
-                                                    </div>
+                                                    {/* <div>
+                                                    <Button leftIcon={<EmailIcon />} colorScheme='teal' variant='solid' onClick={()=>addToWishList(item)}>
+                                                        Add to Wishlist
+                                                    </Button>
+                                                </div> */}
                                                 </div>
                                             </div>
-                                        </div>
-                                    </Box>
-                                </>
-                            )
-                        })
-                    }
-                </SimpleGrid>
-            </Box>
-            <Footer />
+                                        </Box>
+                                    </>
+                                )
+                            })
+                        }
+                    </SimpleGrid>
+                </Box>
+                <Footer />
 
+            </AnimatedPage>
 
         </>
     )
