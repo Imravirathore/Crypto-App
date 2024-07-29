@@ -16,6 +16,7 @@ import {
     useDisclosure,
     useColorModeValue,
     Stack,
+    Input,
     Image
 } from '@chakra-ui/react'
 
@@ -24,6 +25,7 @@ import { FaApple, FaAngleUp, FaAngleDown } from 'react-icons/fa';
 import logo from '../../assets/logo1.png'
 import './navbar.css'
 import { Link } from "react-router-dom";
+import { useState } from 'react';
 
 interface Props {
     children: React.ReactNode
@@ -53,6 +55,13 @@ const NavLink = (props: Props) => {
 
 export default function Navbar() {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [searchCrypto, setSearchCrypto] = useState('')
+
+    const handleChangeSearch = (e:React.ChangeEvent<HTMLInputElement>)=>{
+        setSearchCrypto(e.target.value)
+    }
+
+    console.log('serach query is :', searchCrypto)
 
     return (
         <>
@@ -67,14 +76,6 @@ export default function Navbar() {
                     />
                     <HStack spacing={8} alignItems={'center'}>
                         <Box>
-                            {/* <Image
-                                objectFit='cover'
-                                src={logo}
-                                alt='Dan Abramov'
-                                width='50px'
-                                height='60px'
-                            /> */}
-
                             <Link to='/' >
                                 <Text
                                     className='logo-txt'
@@ -92,6 +93,8 @@ export default function Navbar() {
                         </HStack>
                     </HStack>
                     <Flex alignItems={'center'}>
+                        <Input placeholder='Search Crypto' size='md' mr={4} onChange={handleChangeSearch} />
+
                         <Menu>
                             <MenuButton
                                 as={Button}
@@ -122,6 +125,7 @@ export default function Navbar() {
                                 {/* <MenuItem>Link 3</MenuItem> */}
                             </MenuList>
                         </Menu>
+
                     </Flex>
                 </Flex>
 

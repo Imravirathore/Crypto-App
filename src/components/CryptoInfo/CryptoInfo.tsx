@@ -22,6 +22,7 @@ import {
 } from '@chakra-ui/react'
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import AnimatedPage from '../AnimatedPage/AnimatedPage';
+import './index.css';
 
 const CryptoInfo = () => {
   const location = useLocation();

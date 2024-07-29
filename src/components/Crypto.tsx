@@ -84,7 +84,7 @@ const Crypto: React.FC = () => {
                                 return (
                                     <>
 
-                                        <Box cursor="pointer" height=''>
+                                        <Box cursor="pointer" height='' onClick={() => handleClick(item)}>
                                             <div className="cardContainer">
                                                 <div className="card">
                                                     <p className="city">{item.name}</p>
@@ -100,18 +100,16 @@ const Crypto: React.FC = () => {
                                                     Test
                                                 </Link> */}
 
-                                                    <Button onClick={() => handleClick(item)} colorScheme='blue'>Button</Button>
 
-                                                    {/* <FaHeart style={{
-                                                     color: wishList ? 'red' : '#fff',
+                                                    <FaHeart style={{
                                                      position: 'absolute',
                                                      top: '10',
                                                      right: '10',
                                                      fontSize: '20px',
                                                      cursor: 'pointer'
                                                  }}
-                                                     onClick={() => addWishList(item, index)}
-                                                 /> */}
+                                                    
+                                                 />
                                                     {/* <p className="weather">Change : -2% (Last 24 Hrs)</p> */}
 
                                                     <Image src={item.iconUrl} alt='Crypto Logo Images' borderRadius='full' width={50} />
