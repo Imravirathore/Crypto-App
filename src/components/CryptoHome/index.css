@@ -1,3 +1,14 @@
+.css-h94677
+{
+    /* height: calc(100vh - 60px); */
+}
+.fullHeight
+{
+    border: 2px solid green;
+    height: 100vh;
+    background-color: red;
+}
+
 .cardContainer {
     /* width: fit-content; */
     width: 100%;

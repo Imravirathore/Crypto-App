@@ -30,6 +30,9 @@ import { useState } from 'react';
 interface Props {
     children: React.ReactNode
 }
+interface NavbarProps {
+    onSearch: (query: string) => void;
+  }
 
 // coinrankingae19b29f9cddde3b99f322a8ea51b601f1fbea06d58a796c
 const Links = ['Top-50', 'Top-Gainers', 'Top-Losers', 'Top News']
@@ -53,15 +56,12 @@ const NavLink = (props: Props) => {
     )
 }
 
-export default function Navbar() {
+export default function Navbar ({ onSearch }: NavbarProps) {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const [searchCrypto, setSearchCrypto] = useState('')
-
     const handleChangeSearch = (e:React.ChangeEvent<HTMLInputElement>)=>{
-        setSearchCrypto(e.target.value)
+        onSearch(e.target.value);
     }
 
-    console.log('serach query is :', searchCrypto)
 
     return (
         <>

@@ -1,24 +1,26 @@
 import React from 'react';
 import { Container, Box, Card, CardHeader, CardBody, CardFooter, Stack, Heading, Text, ButtonGroup, Button, Divider, Image, SimpleGrid } from '@chakra-ui/react'
-import Single from './Single';
 import { useSelector, useDispatch } from "react-redux";
-import { IncrementCamera, DecrementCamera } from '../app/features/counter/counterSlice'
-import { RootState } from '../app/store';
-import useCryptoApi from '../components/fetchData/useCryptoApi';
+import { IncrementCamera, DecrementCamera } from '../../app/features/counter/counterSlice'
+import { RootState } from '../../app/store';
+import useCryptoApi from '../fetchData/useCryptoApi';
 import { FaHeart } from "react-icons/fa";
 import { useToast } from '@chakra-ui/react'
-import './single.css'
+import './index.css'
 import { FaCaretUp } from "react-icons/fa6";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import Preloader from './Preloader/Preloader';
-import Preloader2 from './Preloader/Preloader2';
-import UserInfoModal from './UserInfoModal/UserInfoModal';
-import Footer from './Footer/Footer';
+import Preloader from '../Preloader/Preloader';
+import Preloader2 from '../Preloader/Preloader2';
+import UserInfoModal from '../UserInfoModal/UserInfoModal';
+import Footer from '../Footer/Footer';
 import { Link, useNavigate } from "react-router-dom";
 import { ExternalLinkIcon, EmailIcon } from '@chakra-ui/icons'
-import AnimatedPage from './AnimatedPage/AnimatedPage';
+import AnimatedPage from '../AnimatedPage/AnimatedPage';
 
+interface MyComponentProps {
+    searchQuery: string;
+}
 
 type CryptoApiData = {
     btcPrice: string;
@@ -34,7 +36,9 @@ type CryptoApiData = {
     symbol: string;
     rank: number
 };
-const Crypto: React.FC = () => {
+
+
+const Crypto: React.FC<MyComponentProps> = ({ searchQuery }) => {
     const countCamera = useSelector((state: RootState) => state);
     const isDataAvialable = countCamera.counter1.userInfoData && countCamera.counter1.userInfoData.name
 
@@ -50,10 +54,14 @@ const Crypto: React.FC = () => {
     }
 
 
+    // Filter the list based on the search term
+    const filteredCryptos = data.coins.filter((crypto: CryptoApiData) =>
+        crypto.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
 
     const handleClick = (cryptoInfo: CryptoApiData) => {
         navigate(`/crypto/${cryptoInfo.symbol}`, { state: { cryptoInfo } });
-        console.log('received daata ::', cryptoInfo)
     }
 
 
@@ -77,10 +85,10 @@ const Crypto: React.FC = () => {
                     )
                 }
 
-                <Box p='4'>
+                <Box p='4' className='fullHeight'>
                     <SimpleGrid columns={[1, null, 3]} spacing='20px'>
                         {
-                            data.coins.map((item: CryptoApiData, index: number) => {
+                            filteredCryptos.map((item: CryptoApiData, index: number) => {
                                 return (
                                     <>
 
@@ -102,14 +110,14 @@ const Crypto: React.FC = () => {
 
 
                                                     <FaHeart style={{
-                                                     position: 'absolute',
-                                                     top: '10',
-                                                     right: '10',
-                                                     fontSize: '20px',
-                                                     cursor: 'pointer'
-                                                 }}
-                                                    
-                                                 />
+                                                        position: 'absolute',
+                                                        top: '10',
+                                                        right: '10',
+                                                        fontSize: '20px',
+                                                        cursor: 'pointer'
+                                                    }}
+
+                                                    />
                                                     {/* <p className="weather">Change : -2% (Last 24 Hrs)</p> */}
 
                                                     <Image src={item.iconUrl} alt='Crypto Logo Images' borderRadius='full' width={50} />
@@ -161,8 +169,8 @@ const Crypto: React.FC = () => {
                             })
                         }
                     </SimpleGrid>
-                </Box>
                 <Footer />
+                </Box>
 
             </AnimatedPage>
 
